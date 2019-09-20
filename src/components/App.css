@@ -1,14 +1,19 @@
 .App {
   text-align: center;
   color: #333;
-  border:1px solid #aaa;
+  border:1px solid #3c70a4;
   border-radius: 4px;
-  background-color: white;
+  background-color: #64b2cd;
   margin: 2em;
   padding: 0 1em;
   min-height: 20em;
-  min-width: 32px;
+  min-width: 132px;
   box-shadow: 0 0 1em hsla(0,0%,0%,0.15);
 }
+.App > h3{margin: 10px 0;}
+.App > .inputWrapper{margin-bottom: 10px;}
+.App > .inputWrapper > input{text-indent: .5em;}
+.App > ol > ul{margin: 10px 0;}
+.App > ol > ul > li{font-weight: bold;}
 
 
