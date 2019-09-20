@@ -1,8 +1,10 @@
 import React,{Component} from "react";
 import TodoItem from "./TodoItem";
+import TodoInput from "./TodoInput";
+import "./reset.css"
 import "normalize.css";
 import "./App.css";
-import TodoInput from "./TodoInput";
+
 
 class App extends Component{
   constructor(props){
@@ -24,7 +26,15 @@ class App extends Component{
             </ul>
         );
     });
-    return todos;
+    return (
+        <div className="App">
+            <h3>我的待办</h3>
+            <div className="inputWrapper">
+                <TodoInput content={this.state.newTodo}/>
+            </div>
+            <ol>{todos}</ol>
+        </div>
+    );
   }
 }
 export default App;
