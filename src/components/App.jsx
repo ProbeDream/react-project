@@ -22,7 +22,7 @@ class App extends Component{
     let todos = this.state.todoList.map((item,index)=>{
         return (
             <ul key={index} >
-                <TodoItem   todo={item}></TodoItem>
+                <TodoItem   todo={item} ></TodoItem>
             </ul>
         );
     });
@@ -30,11 +30,14 @@ class App extends Component{
         <div className="App">
             <h3>我的待办</h3>
             <div className="inputWrapper">
-                <TodoInput content={this.state.newTodo}/>
+                <TodoInput content={this.state.newTodo} onSubmit={this.addTodo}/>
             </div>
             <ol>{todos}</ol>
         </div>
     );
+  }
+  addTodo(){
+      console.log('看来又要添加一个Todo项了!');
   }
 }
 export default App;
