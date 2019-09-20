@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 import TodoItem from "./TodoItem";
 import TodoInput from "./TodoInput";
-import * as localStore from "../util/localStore";
+import UserDialog from "./UserDialog";
 import "./reset.css"
 import "normalize.css";
 import "./App.css";
@@ -12,9 +12,9 @@ function idMarker(){id += 1;return id;}
 class App extends Component{
   constructor(props){
     super(props);
-    this.state = {newTodo:'', todoList:localStore.loadData('todoList')||[]};
+    this.state = {newTodo:'', todoList:[]};
   }
-  componentDidUpdate() {localStore.saveData('todoList',this.state.todoList);}
+  componentDidUpdate() {}
 
   render() {
     let todos = this.state.todoList.filter((item)=> !item.deleted).map((item,index)=>{
@@ -31,6 +31,7 @@ class App extends Component{
                 <TodoInput onChange={this.changeTitle.bind(this)} content={this.state.newTodo} onSubmit={this.addTodo.bind(this)}/>
             </div>
             <ol className="todoList">{todos}</ol>
+            <UserDialog/>
         </div>
     );
   }
