@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# config
+# /src/cofnig/
+
 # production
 /build
 
