@@ -1,12 +1,13 @@
 import  React,{Component} from "react";
+import "./TodoItem.css";
 class TodoItem extends Component {
     render() {
         return (
-            <div>
+            <div className="todoItem">
                 <input type="checkBox" checked={this.props.todo.status === "completed"}
                        onChange={this.toggle.bind(this)}
                 />
-                {this.props.todo.title}
+                <span className='title'>{this.props.todo.title}</span>
                 <button onClick={this.deleted.bind(this)}>删除</button>
             </div>
         );

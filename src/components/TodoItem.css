@@ -1,0 +1,2 @@
+.todoItem{padding:.5em;display: flex;align-items: center;border-radius: 5px;}
+.todoItem > .title{flex-grow: 1;padding: 0 .5em;}

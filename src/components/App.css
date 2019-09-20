@@ -11,9 +11,15 @@
   box-shadow: 0 0 1em hsla(0,0%,0%,0.15);
 }
 .App > h3{margin: 10px 0;}
-.App > .inputWrapper{margin-bottom: 10px;}
-.App > .inputWrapper > input{text-indent: .5em;}
+.App > .inputWrapper{margin: 10px 0;}
+.App > .inputWrapper > input{text-indent: .5em;border-radius:5px;padding: 5px 7px;}
 .App > ol > ul{margin: 10px 0;}
 .App > ol > ul > li{font-weight: bold;}
 
+.App > .todoList > li:nth-child(odd){
+  background-color: #1089ff6e;
+}
+.App > .todoList > li:nth-child(even){
+  background-color: transparent;
+}
 
