@@ -10,18 +10,13 @@ function idMarker(){id += 1;return id;}
 class App extends Component{
   constructor(props){
     super(props);
-    this.state = {
-      newTodo:'',
-      todoList:[
-
-      ]
-    }
+    this.state = {newTodo:'', todoList:[]};
   }
   render() {
     let todos = this.state.todoList.map((item,index)=>{
         return (
            <li key={index}>
-               <TodoItem   todo={item} ></TodoItem>
+               <TodoItem  todo={item} onToggle={this.toggle.bind(this)} ></TodoItem>
            </li>
         );
     });
@@ -29,7 +24,7 @@ class App extends Component{
         <div className="App">
             <h3>我的待办</h3>
             <div className="inputWrapper">
-                <TodoInput content={this.state.newTodo} onSubmit={this.addTodo.bind(this)}/>
+                <TodoInput onChange={this.changeTitle.bind(this)} content={this.state.newTodo} onSubmit={this.addTodo.bind(this)}/>
             </div>
             <ol>{todos}</ol>
         </div>
@@ -41,11 +36,15 @@ class App extends Component{
           title:event.target.value,
           status:null,deleted:false
       });
-      this.setState({
-          newTodo:'',
-          todoList:this.state.todoList
-      })
+      this.setState({newTodo:'', todoList:this.state.todoList});
   }
+    changeTitle(event){
+      this.setState({newTodo:event.target.value,todoList:this.state.todoList});
+    }
+    toggle(event,todo){
+      todo.status = todo.status === 'completed' ? " " : 'completed';
+      this.setState(this.state);
+    }
 }
 export default App;
 
