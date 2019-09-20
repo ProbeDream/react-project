@@ -19,11 +19,7 @@ AV.init({
 
 let TestObject = AV.Object.extend('TestObject');
 let testObject = new TestObject();
-testObject.save({
-    words:'LeanCloud WelCome to ProbeDream!'
-}).then(data=>{
-    console.log('SUCSESS');
-});
+
 
 let id = 0;
 function idMarker(){id += 1;return id;}
