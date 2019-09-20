@@ -28,7 +28,7 @@ class App extends Component{
         <div className="App">
             <h3>我的待办</h3>
             <div className="inputWrapper">
-                <TodoInput onChange={this.changeTitle.bind(this)} content={this.state.newTodo} onSubmit={this.addTodo.bind(this)}/>
+                <TodoInput  onChange={this.changeTitle.bind(this)} content={this.state.newTodo} onSubmit={this.addTodo.bind(this)}/>
             </div>
             <ol className="todoList">{todos}</ol>
             <UserDialog/>
