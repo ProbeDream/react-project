@@ -13,10 +13,10 @@ class App extends Component{
     this.state = {newTodo:'', todoList:[]};
   }
   render() {
-    let todos = this.state.todoList.map((item,index)=>{
+    let todos = this.state.todoList.filter((item)=> !item.deleted).map((item,index)=>{
         return (
            <li key={index}>
-               <TodoItem  todo={item} onToggle={this.toggle.bind(this)} ></TodoItem>
+               <TodoItem  todo={item} onToggle={this.toggle.bind(this)} onDelete={this.delete.bind(this)} ></TodoItem>
            </li>
         );
     });
@@ -38,12 +38,14 @@ class App extends Component{
       });
       this.setState({newTodo:'', todoList:this.state.todoList});
   }
-    changeTitle(event){
-      this.setState({newTodo:event.target.value,todoList:this.state.todoList});
-    }
+    changeTitle(event){this.setState({newTodo:event.target.value,todoList:this.state.todoList});}
     toggle(event,todo){
       todo.status = todo.status === 'completed' ? " " : 'completed';
       this.setState(this.state);
+    }
+    delete(event,todo){
+       todo.deleted = true;
+       this.setState(this.state);
     }
 }
 export default App;
