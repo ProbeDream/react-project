@@ -2,12 +2,12 @@
   text-align: center;
   color: #333;
   border:1px solid #3c70a4;
-  border-radius: 4px;
+  border-radius: 5px;
   background-color: #64b2cd;
   margin: 2em;
   padding: 0 1em;
   min-height: 20em;
-  min-width: 132px;
+  min-width: 300px;
   box-shadow: 0px 1px 4px 3px rgba(0,0,0,0.51);
 }
 .App > h3{margin: 10px 0;}

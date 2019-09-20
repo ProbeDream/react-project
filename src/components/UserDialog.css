@@ -1,0 +1,23 @@
+.UserDialogWrapper{
+    position: fixed;top: 0;left: 0;bottom: 0;right: 0;
+    display: flex;justify-content: center;align-items: center;
+}
+.UserDialogWrapper > .UserDialog{
+    border-radius:5px;
+    max-width: 20em;
+    background-color: #fff;
+    box-shadow: 0 0 1em hsla(0,0%,0%,0.35);
+    padding: 16px;
+}
+.UserDialogWrapper > .UserDialog > nav:first-child{
+    padding: 1em;
+}
+.UserDialogWrapper > .UserDialog > nav:first-child input[type=radio]:not(:first-child){
+    margin-left: 2em;
+}
+
+.UserDialog form > div >.row{
+    display: flex;padding:.3em 0;
+}
+.UserDialog form > div >.row>label:first-child{width: 4em;}
+.UserDialog form > div >.row.actions{padding-left: 4em;}
