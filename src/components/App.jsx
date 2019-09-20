@@ -5,39 +5,47 @@ import "./reset.css"
 import "normalize.css";
 import "./App.css";
 
-
+let id = 0;
+function idMarker(){id += 1;return id;}
 class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-      newTodo:'test',
+      newTodo:'',
       todoList:[
-          { id: 1, title: "Learning Vue" },
-          { id: 2, title: "Learning Angular" },
-          { id: 3, title: "Learning React" }
+
       ]
     }
   }
   render() {
     let todos = this.state.todoList.map((item,index)=>{
         return (
-            <ul key={index} >
-                <TodoItem   todo={item} ></TodoItem>
-            </ul>
+           <li key={index}>
+               <TodoItem   todo={item} ></TodoItem>
+           </li>
         );
     });
     return (
         <div className="App">
             <h3>我的待办</h3>
             <div className="inputWrapper">
-                <TodoInput content={this.state.newTodo} onSubmit={this.addTodo}/>
+                <TodoInput content={this.state.newTodo} onSubmit={this.addTodo.bind(this)}/>
             </div>
             <ol>{todos}</ol>
         </div>
     );
   }
-  addTodo(){
-      console.log('看来又要添加一个Todo项了!');
+  addTodo(event){
+      this.state.todoList.push({
+          id:idMarker(),
+          title:event.target.value,
+          status:null,deleted:false
+      });
+      this.setState({
+          newTodo:'',
+          todoList:this.state.todoList
+      })
   }
 }
 export default App;
+
