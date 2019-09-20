@@ -13,11 +13,13 @@ class App extends Component{
     super(props);
     this.state = {newTodo:'', todoList:localStore.loadData('todoList')||[]};
   }
+  componentDidUpdate() {localStore.saveData('todoList',this.state.todoList);}
+
   render() {
     let todos = this.state.todoList.filter((item)=> !item.deleted).map((item,index)=>{
         return (
            <li key={index}>
-               <TodoItem  todo={item} onToggle={this.toggle.bind(this)} onDelete={this.delete.bind(this)} ></TodoItem>
+               <TodoItem  todo={item} onToggle={this.toggle.bind(this)} onDelete={this.delete.bind(this)} />
            </li>
         );
     });
@@ -32,28 +34,15 @@ class App extends Component{
     );
   }
     addTodo(event){
-      this.state.todoList.push({
-          id:idMarker(),
-          title:event.target.value,
-          status:null,deleted:false
-      });
+      this.state.todoList.push({id:idMarker(), title:event.target.value, status:null,deleted:false});
       this.setState({newTodo:'', todoList:this.state.todoList});
-      localStore.saveData('todoList',this.state.todoList);
     }
-    changeTitle(event){
-      this.setState({newTodo:event.target.value,todoList:this.state.todoList});
-      localStore.saveData('todoList',this.state.todoList);
-    }
-    toggle(event,todo){
-      todo.status = todo.status === 'completed' ? " " : 'completed';
-      this.setState(this.state);
-      localStore.saveData('todoList',this.state.todoList);
-    }
-    delete(event,todo){
-       todo.deleted = true;
-       this.setState(this.state);
-       localStore.saveData('todoList',this.state.todoList);
-    }
+
+    changeTitle(event){this.setState({newTodo:event.target.value,todoList:this.state.todoList});}
+
+    toggle(event,todo){todo.status = todo.status === 'completed' ? " " : 'completed';this.setState(this.state);}
+
+    delete(event,todo){todo.deleted = true;this.setState(this.state);}
 }
 export default App;
 
