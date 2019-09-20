@@ -2,23 +2,9 @@ import React,{Component} from "react";
 import TodoItem from "./TodoItem";
 import TodoInput from "./TodoInput";
 import * as localStore from "../util/localStore";
-import AV from "leancloud-storage";
-import Key from "../config/key";
 import "./reset.css"
 import "normalize.css";
 import "./App.css";
-
-
-let APP_ID = Key.APP_ID;
-let APP_KEY = Key.APP_KEY;
-
-AV.init({
-    appId: APP_ID,
-    appKey: APP_KEY
-});
-
-let TestObject = AV.Object.extend('TestObject');
-let testObject = new TestObject();
 
 
 let id = 0;
