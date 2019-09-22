@@ -2,7 +2,7 @@ import React,{Component} from "react";
 import TodoItem from "./TodoItem";
 import TodoInput from "./TodoInput";
 import UserDialog from "./UserDialog";
-import {getCurrentUser} from "../service/leanCloud";
+import {getCurrentUser,signOut} from "../service/leanCloud";
 import "./reset.css"
 import "normalize.css";
 import "./App.css";
@@ -27,7 +27,10 @@ class App extends Component{
     });
     return (
         <div className="App">
-            <h3>{this.state.user.username || '我'} 的待办</h3>
+            <h3>
+                {this.state.user.username || '我'} 的待办
+                {this.state.user.id ? <button onClick={this.signOut.bind(this)}>登出</button>} : null}
+            </h3>
             <div className="inputWrapper">
                 <TodoInput  onChange={this.changeTitle.bind(this)} content={this.state.newTodo} onSubmit={this.addTodo.bind(this)}/>
             </div>
@@ -39,6 +42,13 @@ class App extends Component{
     addTodo(event){
       this.state.todoList.push({id:idMarker(), title:event.target.value, status:null,deleted:false});
       this.setState({newTodo:'', todoList:this.state.todoList});
+    }
+
+    signOut(){
+       signOut();
+       let copyState = JSON.parse(JSON.stringify(this.state));
+       copyState.user = {};
+       this.setState(copyState);
     }
 
     changeTitle(event){this.setState({newTodo:event.target.value,todoList:this.state.todoList});}

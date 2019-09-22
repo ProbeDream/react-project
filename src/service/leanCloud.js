@@ -26,6 +26,11 @@ export function getCurrentUser(){
     return !user ? null : getUserFormAVUser(user);
 }
 
+export function signOut(){
+    AV.User.logOut();
+    return undefined;
+}
+
 function getUserFormAVUser(AVUser){
     return {id:AVUser.id,...AVUser.attributes}
 }
