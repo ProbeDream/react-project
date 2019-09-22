@@ -12,7 +12,7 @@ function idMarker(){id += 1;return id;}
 class App extends Component{
   constructor(props){
     super(props);
-    this.state = {newTodo:'', todoList:[]};
+    this.state = {user:{},newTodo:'', todoList:[]};
   }
   componentDidUpdate() {}
 
@@ -26,12 +26,12 @@ class App extends Component{
     });
     return (
         <div className="App">
-            <h3>我的待办</h3>
+            <h3>{this.state.user.username || '我'} 的待办</h3>
             <div className="inputWrapper">
                 <TodoInput  onChange={this.changeTitle.bind(this)} content={this.state.newTodo} onSubmit={this.addTodo.bind(this)}/>
             </div>
             <ol className="todoList">{todos}</ol>
-            <UserDialog/>
+            <UserDialog onsignUp={this.onSignUp.bind(this)}/>
         </div>
     );
   }
@@ -45,6 +45,8 @@ class App extends Component{
     toggle(event,todo){todo.status = todo.status === 'completed' ? " " : 'completed';this.setState(this.state);}
 
     delete(event,todo){todo.deleted = true;this.setState(this.state);}
+
+    onSignUp(user){this.state.user = user;this.setState(this.state);}
 }
 export default App;
 
