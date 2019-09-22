@@ -25,7 +25,12 @@ class UserDialog extends Component{
             this.props.onSignUp.call(null,user);
         };
         let error = error=>{
-            console.log(error);
+            switch (error.code) {
+                case 202:
+                    alert('用户名已被占用');break;
+                default:
+                    alert(error);break;
+            }
         };
         signUp(username,password,success,error);
     }
@@ -36,7 +41,12 @@ class UserDialog extends Component{
             this.props.onSignIn.call(null,user);
         };
         let error = error=>{
-            console.log(error);
+            switch (error.code) {
+                case 210:
+                    alert('用户名与密码不匹配');break;
+                default:
+                    alert(error);break;
+            }
         };
         signIn(username,password,success,error);
     }
@@ -69,7 +79,7 @@ class UserDialog extends Component{
                 </div>
                 <div className="row">
                     <label >密&nbsp;&nbsp;&nbsp;码</label>
-                    <input autoComplete="true"  type="password" value={this.state.formData.password} onChange={this.changeFormData.bind(this,'username')}/>
+                    <input autoComplete="true"  type="password" value={this.state.formData.password} onChange={this.changeFormData.bind(this,'password')}/>
                 </div>
                 <div className="row actions">
                     <button type="submit">登录</button>
