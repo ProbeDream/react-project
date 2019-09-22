@@ -31,7 +31,7 @@ class App extends Component{
                 <TodoInput  onChange={this.changeTitle.bind(this)} content={this.state.newTodo} onSubmit={this.addTodo.bind(this)}/>
             </div>
             <ol className="todoList">{todos}</ol>
-            <UserDialog onsignUp={this.onSignUp.bind(this)}/>
+            {this.state.user.id ? null : <UserDialog onsignUp={this.onSignUp.bind(this)}/>}
         </div>
     );
   }
