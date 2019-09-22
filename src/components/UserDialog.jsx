@@ -1,4 +1,5 @@
 import React,{Component} from "react";
+import {signUp} from "../service/leanCloud";
 import "./UserDialog.css";
 
 class UserDialog extends Component{
@@ -17,8 +18,20 @@ class UserDialog extends Component{
             selected:e.target.value
         })
     }
-    signUp(e){}
-    signIn(e){}
+    signUp(e){
+        e.preventDefault();
+        let {username,password}  = this.state.formData;
+        let success = user=>{
+            console.log(user);
+        };
+        let error = error=>{
+            console.log(error);
+        };
+        signUp(username,password,success,error);
+    }
+    signIn(e){
+
+    }
     changeFormData(key,e){
         let stateCopy = JSON.parse(JSON.stringify(this.state));
         stateCopy.formData[key] = e.target.value;
@@ -32,7 +45,7 @@ class UserDialog extends Component{
                     <input type="text" value={this.state.formData.username} onChange={this.changeFormData.bind(this,"username")}/>
                 </div>
                 <div className="row">
-                    <label >密码</label>
+                    <label >密&nbsp;&nbsp;&nbsp;码</label>
                     <input type="password" value={this.state.formData.password} onChange={this.changeFormData.bind(this,"password")}/>
                 </div>
                 <div className="row actions">
@@ -44,11 +57,11 @@ class UserDialog extends Component{
             <form className="signIn" onSubmit={this.signIn.bind(this)}>
                 <div className="row">
                     <label >用户名</label>
-                    <input autoComplete="true"  type="text" value={this.state.formData.username} onChange={this.changeUsername.bind(this)}/>
+                    <input autoComplete="true"  type="text" value={this.state.formData.username} onChange={this.changeFormData.bind(this,'username')}/>
                 </div>
                 <div className="row">
-                    <label >登录</label>
-                    <input autoComplete="true"  type="password" value={this.state.formData.password} onChange={this.changePassword.bind(this)}/>
+                    <label >密&nbsp;&nbsp;&nbsp;码</label>
+                    <input autoComplete="true"  type="password" value={this.state.formData.password} onChange={this.changeFormData.bind(this,'username')}/>
                 </div>
                 <div className="row actions">
                     <button type="submit">登录</button>
