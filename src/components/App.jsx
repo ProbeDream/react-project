@@ -29,19 +29,25 @@ class App extends Component{
         <div className="App">
             <h3>
                 {this.state.user.username || '我'} 的待办
-                {this.state.user.id ? <button onClick={this.signOut.bind(this)}>登出</button>} : null}
+                {this.state.user.id ? <button onClick={this.signOut.bind(this)}>登出</button> : null}
             </h3>
             <div className="inputWrapper">
                 <TodoInput  onChange={this.changeTitle.bind(this)} content={this.state.newTodo} onSubmit={this.addTodo.bind(this)}/>
             </div>
             <ol className="todoList">{todos}</ol>
-            {this.state.user.id ? null : <UserDialog onsignUp={this.onSignUp.bind(this)}/>}
+            {this.state.user.id ? null : <UserDialog onSignUp={this.onSignUp.bind(this)} onSignIn={this.onSignIn.bind(this)} />}
         </div>
     );
   }
     addTodo(event){
       this.state.todoList.push({id:idMarker(), title:event.target.value, status:null,deleted:false});
       this.setState({newTodo:'', todoList:this.state.todoList});
+    }
+
+    onSignIn(user){
+        let stateCopy = JSON.parse(JSON.stringify(this.state));
+        stateCopy.user = user;
+        this.setState(stateCopy);
     }
 
     signOut(){

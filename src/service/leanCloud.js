@@ -31,6 +31,15 @@ export function signOut(){
     return undefined;
 }
 
+export function signIn(username,password,successFn,errorFn){
+    AV.User.logIn(username,password).then(loginedUser=>{
+        let user = getUserFormAVUser(loginedUser);
+        successFn.call(null,user);
+    },(error)=>{
+        errorFn.call(null,error);
+    });
+}
+
 function getUserFormAVUser(AVUser){
     return {id:AVUser.id,...AVUser.attributes}
 }
