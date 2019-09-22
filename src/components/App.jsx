@@ -46,7 +46,7 @@ class App extends Component{
 
     delete(event,todo){todo.deleted = true;this.setState(this.state);}
 
-    onSignUp(user){this.state.user = user;this.setState(this.state);}
+    onSignUp(user){let stateCopy = JSON.parse(JSON.stringify(this.state));stateCopy.user = user; this.setState(stateCopy);}
 }
 export default App;
 
