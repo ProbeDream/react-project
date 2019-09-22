@@ -2,6 +2,7 @@ import React,{Component} from "react";
 import TodoItem from "./TodoItem";
 import TodoInput from "./TodoInput";
 import UserDialog from "./UserDialog";
+import {getCurrentUser} from "../service/leanCloud";
 import "./reset.css"
 import "normalize.css";
 import "./App.css";
@@ -12,7 +13,7 @@ function idMarker(){id += 1;return id;}
 class App extends Component{
   constructor(props){
     super(props);
-    this.state = {user:{},newTodo:'', todoList:[]};
+    this.state = {user:getCurrentUser()||{},newTodo:'', todoList:[]};
   }
   componentDidUpdate() {}
 

@@ -20,6 +20,12 @@ export function signUp(username,password,successFn,errorFn){
     });
     return undefined;
 }
+
+export function getCurrentUser(){
+    let user = AV.User.current();
+    return !user ? null : getUserFormAVUser(user);
+}
+
 function getUserFormAVUser(AVUser){
     return {id:AVUser.id,...AVUser.attributes}
 }
