@@ -4,23 +4,41 @@ import "./UserDialog.css";
 class UserDialog extends Component{
     constructor(props){
         super(props);
-        this.state = {selected:'signUp'};
+        this.state = {
+            selected:'signUp',
+            formData:{
+                username:'',
+                password:''
+            }
+        };
     }
     switch(e){
         this.setState({
             selected:e.target.value
         })
     }
+    signUp(e){}
+    signIn(e){}
+    changeUsername(e){
+        let stateCopy = JSON.parse(JSON.stringify(this.state));
+        stateCopy.formData.username = e.target.value;
+        this.setState(stateCopy);
+    }
+    changePassword(e){
+        let stateCopy = JSON.parse(JSON.stringify(this.state));
+        stateCopy.formData.password = e.target.value;
+        this.setState(stateCopy);
+    }
     render() {
         let signUpForm = (
-            <form className="signUp">
+            <form className="signUp" onSubmit={this.signUp.bind(this)}>
                 <div className="row">
-                    <label >注册</label>
-                    <input type="text"/>
+                    <label >用户名</label>
+                    <input type="text" value={this.state.formData.username} onChange={this.changeUsername.bind(this)}/>
                 </div>
                 <div className="row">
-                    <label >登录</label>
-                    <input type="password"/>
+                    <label >密码</label>
+                    <input type="password" value={this.state.formData.password} onChange={this.changePassword.bind(this)}/>
                 </div>
                 <div className="row actions">
                     <button type="submit">注册</button>
@@ -28,20 +46,20 @@ class UserDialog extends Component{
             </form>
         );
         let signInForm = (
-            <form className="signUp">
+            <form className="signIn" onSubmit={this.signIn.bind(this)}>
                 <div className="row">
-                    <label >注册</label>
-                    <input autoComplete="true"  type="text"/>
+                    <label >用户名</label>
+                    <input autoComplete="true"  type="text" value={this.state.formData.username} onChange={this.changeUsername.bind(this)}/>
                 </div>
                 <div className="row">
                     <label >登录</label>
-                    <input autoComplete="true"  type="password"/>
+                    <input autoComplete="true"  type="password" value={this.state.formData.password} onChange={this.changePassword.bind(this)}/>
                 </div>
                 <div className="row actions">
                     <button type="submit">登录</button>
                 </div>
             </form>
-        )
+        );
         return (
             <div className="UserDialogWrapper">
                 <div className="UserDialog">
