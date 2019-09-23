@@ -51,11 +51,12 @@ export function sendPasswordResetEmail(email,successFn,errorFn){
 
 export const TodoModel = {
     getByUser(user,successFn,errorFn){
-        let query = AV.query('Todo');
+        let query = new AV.Query('Todo');
         query.find().then(response=>{
             let array = response.map(t=>{
                 return {id:t.id,...t.attributes}
-            })
+            });
+            successFn.call(null,array);
         },error=>{
             errorFn && errorFn.call(null,error);
         })
@@ -65,6 +66,12 @@ export const TodoModel = {
         todo.set('title',title);
         todo.set('status',status);
         todo.set('deleted',deleted);
+
+        let ACL = new AV.ACL();
+        ACL.setPublicReadAccess(false);
+        ACL.setPublicWriteAccess(AV.User.current(),true);
+        todo.setACL(ACL);
+        
         todo.save().then(response=>{
             successFn.call(null,response.id);
         },error=>{
