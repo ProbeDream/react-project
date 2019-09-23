@@ -45,7 +45,7 @@ export function sendPasswordResetEmail(email,successFn,errorFn){
     AV.User.requestPasswordReset(email).then(success=>{
         successFn.call();
     },error=>{
-        errorFn.call(error);
+        errorFn.call(null,error);
     })
 }
 
