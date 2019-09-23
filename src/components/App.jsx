@@ -23,7 +23,16 @@ class App extends Component{
           })
       }
   }
-
+  toggle(e,todo){
+      let oldState = todo.status;
+      todo.status = todo.status === 'completed' ? '' : 'completed';
+      TodoModel.update(todo,()=>{
+          this.setState(this.state);
+      },error=>{
+          todo.status = oldState;
+          this.setState(this.state);
+      })
+  }
 
   componentDidUpdate() {}
 
