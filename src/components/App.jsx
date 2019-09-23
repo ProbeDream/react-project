@@ -2,7 +2,7 @@ import React,{Component} from "react";
 import TodoItem from "./TodoItem";
 import TodoInput from "./TodoInput";
 import UserDialog from "./UserDialog";
-import {getCurrentUser,signOut} from "../service/leanCloud";
+import {getCurrentUser,signOut,TodoModel} from "../service/leanCloud";
 import "./reset.css"
 import "normalize.css";
 import "./App.css";
@@ -40,8 +40,15 @@ class App extends Component{
     );
   }
     addTodo(event){
-      this.state.todoList.push({id:idMarker(), title:event.target.value, status:null,deleted:false});
-      this.setState({newTodo:'', todoList:this.state.todoList});
+      let newTodo = {title:event.target.value,status:null,delete:false};
+      TodoModel.create(newTodo,id=>{
+         newTodo.id = id ;
+         this.state.todoList.push(newTodo);
+         this.setState({newTodo:'',todolist:this.state.todoList})
+      },error=>{
+          console.log(error);
+      });
+
     }
 
     onSignUpOrSignIn(user){

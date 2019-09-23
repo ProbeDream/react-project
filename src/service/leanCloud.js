@@ -49,6 +49,25 @@ export function sendPasswordResetEmail(email,successFn,errorFn){
     })
 }
 
+export const TodoModel = {
+    create({status,title,deleted},successFn,errorFn){
+        let Todo = AV.Object.extend('Todo');
+        let todo = new Todo();
+        todo.set('title',title);
+        todo.set('status',status);
+        todo.set('deleted',deleted);
+        todo.save().then(response=>{
+            successFn.call(null,response.id);
+        },error=>{
+            errorFn && errorFn.call(null,error);
+        })
+    },update(){
+
+    },destroy(){
+
+    }
+};
+
 function getUserFormAVUser(AVUser){
     return {id:AVUser.id,...AVUser.attributes}
 }
