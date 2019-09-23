@@ -8,10 +8,11 @@ AV.init({
 });
 
 export default AV;
-export function signUp(username,password,successFn,errorFn){
+export function signUp(email,username,password,successFn,errorFn){
     let user = new AV.User();
     user.setUsername(username);
     user.setPassword(password);
+    user.setEmail(email);
     user.signUp().then(loginedUser=>{
         let user = getUserFormAVUser(loginedUser);
         successFn.call(null,user);
