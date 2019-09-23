@@ -15,9 +15,9 @@ export function signUp(email,username,password,successFn,errorFn){
     user.setEmail(email);
     user.signUp().then(loginedUser=>{
         let user = getUserFormAVUser(loginedUser);
-        successFn.call(null,user);
+        successFn && successFn.call(null,user);
     },error=>{
-        errorFn.call(null,error);
+        errorFn && errorFn.call(null,error);
     });
     return undefined;
 }
@@ -35,17 +35,17 @@ export function signOut(){
 export function signIn(username,password,successFn,errorFn){
     AV.User.logIn(username,password).then(loginedUser=>{
         let user = getUserFormAVUser(loginedUser);
-        successFn.call(null,user);
+        successFn && successFn.call(null,user);
     },(error)=>{
-        errorFn.call(null,error);
+       errorFn && errorFn.call(null,error);
     });
 }
 
 export function sendPasswordResetEmail(email,successFn,errorFn){
     AV.User.requestPasswordReset(email).then(success=>{
-        successFn.call();
+        successFn && successFn.call();
     },error=>{
-        errorFn.call(null,error);
+        errorFn && errorFn.call(null,error);
     })
 }
 
@@ -56,9 +56,9 @@ export const TodoModel = {
             let array = response.map(t=>{
                 return {id:t.id,...t.attributes}
             });
-            successFn.call(null,array);
+           successFn && successFn.call(null,array);
         },error=>{
-            errorFn && errorFn.call(null,error);
+           errorFn && errorFn.call(null,error);
         })
     },create({status,title,deleted},successFn,errorFn){
         let Todo = AV.Object.extend('Todo');
@@ -71,16 +71,21 @@ export const TodoModel = {
         ACL.setPublicReadAccess(false);
         ACL.setPublicWriteAccess(AV.User.current(),true);
         todo.setACL(ACL);
-        
+
         todo.save().then(response=>{
-            successFn.call(null,response.id);
+            successFn && successFn.call(null,response.id);
         },error=>{
             errorFn && errorFn.call(null,error);
         })
     },update(){
 
-    },destroy(){
-
+    },destroy(todoId,successFn,errorFn){
+        let todo = AV.Object.createWithoutData('Todo',todoId);
+        todo.destroy().then(response=>{
+            successFn && successFn.call(null,response);
+        },error=>{
+            errorFn && errorFn.call(null,error);
+        })
     }
 };
 

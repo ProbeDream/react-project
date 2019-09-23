@@ -78,7 +78,10 @@ class App extends Component{
 
     toggle(event,todo){todo.status = todo.status === 'completed' ? " " : 'completed';this.setState(this.state);}
 
-    delete(event,todo){todo.deleted = true;this.setState(this.state);}
+    delete(event,todo){TodoModel.destroy(todo.id,()=>{
+        todo.deleted = true;
+        this.setState(this.state);
+    })}
 
 }
 export default App;
