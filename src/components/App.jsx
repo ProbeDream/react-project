@@ -8,8 +8,6 @@ import "normalize.css";
 import "./App.css";
 
 
-let id = 0;
-function idMarker(){id += 1;return id;}
 class App extends Component{
   constructor(props){
     super(props);
@@ -59,11 +57,11 @@ class App extends Component{
     );
   }
     addTodo(event){
-      let newTodo = {title:event.target.value,status:"",delete:false};
+      let newTodo = {title:event.target.value,status:null,delete:false};
       TodoModel.create(newTodo,id=>{
          newTodo.id = id ;
          this.state.todoList.push(newTodo);
-         this.setState({newTodo:'',todolist:this.state.todoList})
+         this.setState({newTodo:'',todoList:this.state.todoList})
       },error=>{
           console.log(error);
       });
@@ -85,7 +83,7 @@ class App extends Component{
 
     changeTitle(event){this.setState({newTodo:event.target.value,todoList:this.state.todoList});}
 
-    toggle(event,todo){todo.status = todo.status === 'completed' ? " " : 'completed';this.setState(this.state);}
+    toggle(event,todo){todo.status = todo.status === 'completed' ? '' : 'completed';this.setState(this.state);}
 
     delete(event,todo){TodoModel.destroy(todo.id,()=>{
         todo.deleted = true;

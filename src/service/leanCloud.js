@@ -78,7 +78,7 @@ export const TodoModel = {
             successFn && successFn.call(null,response.id);
         },error=>{
             errorFn && errorFn.call(null,error);
-        })
+        });
     },update({id,title,status,deleted},successFn,errorFn){
         let todo = AV.Object.createWithoutData('Todo',id);
         title !== undefined && todo.set('title',title);
@@ -86,16 +86,12 @@ export const TodoModel = {
         deleted !== undefined && todo.set('deleted',deleted);
         todo.save().then(response=>{
            successFn && successFn.call(null,response);
-        },error=>{
-            errorFn && errorFn.call(null,error);
-        });
+        },error=> errorFn && errorFn.call(null,error)
+        );
     },destroy(todoId,successFn,errorFn){
-        let todo = AV.Object.createWithoutData('Todo',todoId);
-        //对齐Todo进行标记而并非直接删除!
         TodoModel.update({id:todoId,deleted:true},successFn,errorFn);
     }
 };
-
 
 function getUserFormAVUser(AVUser){
     return {id:AVUser.id,...AVUser.attributes}
