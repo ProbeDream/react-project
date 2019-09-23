@@ -1,68 +1,19 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### TodoList 精美任务列表
+#### 1. 使用方式
+- 直接通过Git clone 克隆项目到本地
+- 通过 Yarn install 或者说 npm install 下载对应的依赖
+- 最后通过 Yarn start 或者说 npm run start 启动项目
+- 最后通过分配的端口 进入到对应的页面!
+![TodoList01.jpg](https://ws1.sinaimg.cn/large/0060ejA5gy1g79nfpyiu9j30a50htmxn.jpg)
 
-## Available Scripts
+![TodoList02.jpg](https://ws1.sinaimg.cn/large/0060ejA5gy1g79nfpz468j309y0hq0t1.jpg)
 
-In the project directory, you can run:
+![TodoList03.jpg](https://ws1.sinaimg.cn/large/0060ejA5gy1g79nfpxkacj30a20hqmxi.jpg)
 
-### `npm start`
+#### 2. 使用到的技术栈
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+React + LeanCloud + CSS 
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+通过React做UI框架,对应的后端的数据获取是通过对接LeanCloud的API接口对数据进行操作!
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+#### 3. 如果你有疑问的话,可以通过[Iuuse](https://github.com/ProbeDream/react-project/issues) 给我提建议哦!
