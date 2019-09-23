@@ -3,7 +3,7 @@ export  default  function(props){
     return (
         <form className="signUp" onSubmit={props.onSubmit.bind(this)}>
             <div className="row">
-                <label >邮箱</label>
+                <label >邮&nbsp;&nbsp;&nbsp;箱</label>
                 <input type="text" value={props.formData.email} onChange={props.onChange.bind(null, 'email')}/>
             </div>
             <div className="row">

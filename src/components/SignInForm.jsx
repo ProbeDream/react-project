@@ -1,7 +1,7 @@
 import React from "react";
 export default function(props){
     return (
-        <form className="signIn" onSubmit={props.signIn}>
+        <form className="signIn" onSubmit={props.onSubmit}>
             <div className="row">
                 <label >用户名</label>
                 <input   type="text" value={props.formData.username} onChange={props.onChange.bind(null, 'username')}/>
