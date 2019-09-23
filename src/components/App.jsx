@@ -59,7 +59,7 @@ class App extends Component{
     );
   }
     addTodo(event){
-      let newTodo = {title:event.target.value,status:null,delete:false};
+      let newTodo = {title:event.target.value,status:"",delete:false};
       TodoModel.create(newTodo,id=>{
          newTodo.id = id ;
          this.state.todoList.push(newTodo);

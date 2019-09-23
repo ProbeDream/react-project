@@ -70,6 +70,7 @@ export const TodoModel = {
         let ACL = new AV.ACL();
         ACL.setPublicReadAccess(false);
         ACL.setPublicWriteAccess(AV.User.current(),true);
+        ACL.setReadAccess(AV.User.current(),true);
         todo.setACL(ACL);
 
         todo.save().then(response=>{
