@@ -52,6 +52,7 @@ export function sendPasswordResetEmail(email,successFn,errorFn){
 export const TodoModel = {
     getByUser(user,successFn,errorFn){
         let query = new AV.Query('Todo');
+        query.equalTo('deleted',false);
         query.find().then(response=>{
             let array = response.map(t=>{
                 return {id:t.id,...t.attributes}
@@ -69,7 +70,7 @@ export const TodoModel = {
 
         let ACL = new AV.ACL();
         ACL.setPublicReadAccess(false);
-        ACL.setPublicWriteAccess(AV.User.current(),true);
+        ACL.setWriteAccess(AV.User.current(),true);
         ACL.setReadAccess(AV.User.current(),true);
         todo.setACL(ACL);
 
@@ -90,11 +91,8 @@ export const TodoModel = {
         });
     },destroy(todoId,successFn,errorFn){
         let todo = AV.Object.createWithoutData('Todo',todoId);
-        todo.destroy().then(response=>{
-            successFn && successFn.call(null,response);
-        },error=>{
-            errorFn && errorFn.call(null,error);
-        })
+        //对齐Todo进行标记而并非直接删除!
+        TodoModel.update({id:todoId,deleted:true},successFn,errorFn);
     }
 };
 
