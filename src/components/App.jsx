@@ -14,7 +14,17 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state = {user:getCurrentUser()||{},newTodo:'', todoList:[]};
+      let user = getCurrentUser();
+      if(user){
+          TodoModel.getByUser(user,todos=>{
+              let stateCopy = JSON.parse(JSON.stringify(this.state));
+              stateCopy.todoList = todos;
+              this.setState(stateCopy);
+          })
+      }
   }
+
+
   componentDidUpdate() {}
 
   render() {

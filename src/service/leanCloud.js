@@ -50,7 +50,16 @@ export function sendPasswordResetEmail(email,successFn,errorFn){
 }
 
 export const TodoModel = {
-    create({status,title,deleted},successFn,errorFn){
+    getByUser(user,successFn,errorFn){
+        let query = AV.query('Todo');
+        query.find().then(response=>{
+            let array = response.map(t=>{
+                return {id:t.id,...t.attributes}
+            })
+        },error=>{
+            errorFn && errorFn.call(null,error);
+        })
+    },create({status,title,deleted},successFn,errorFn){
         let Todo = AV.Object.extend('Todo');
         let todo = new Todo();
         todo.set('title',title);
@@ -67,6 +76,7 @@ export const TodoModel = {
 
     }
 };
+
 
 function getUserFormAVUser(AVUser){
     return {id:AVUser.id,...AVUser.attributes}
