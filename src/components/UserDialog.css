@@ -14,7 +14,9 @@
 
 .UserDialogWrapper .signInOrSignUp > .UserDialog > nav:first-child label{margin-left: 2em;cursor:pointer;}
 
-.UserDialogWrapper .forgotPassword > h3{}
+.UserDialogWrapper .forgotPassword > h3{padding: 1em;}
+
+.UserDialogWrapper .forgotPassword > form {padding: 0 1em 1em;}
 
 .UserDialog form > div  {margin: 10px 0 ;}
 
